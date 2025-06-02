@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="00f2fb5bd9c94f4c86629f80f03b595c" Name="Diagram1">
+        <EntityTypeShape EntityType="FloristModel.allProducts" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.basket" Width="1.5" PointX="9.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.blossomSize" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.bouquet" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.bouquetStructure" Width="1.5" PointX="14.375" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.city" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.color" Width="1.5" PointX="2.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.country" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.flowers" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.order" Width="1.5" PointX="12" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.role" Width="1.5" PointX="13.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.salePoint" Width="1.5" PointX="9.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.supplier" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.type" Width="1.5" PointX="3.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FloristModel.user" Width="1.5" PointX="11.875" PointY="6.25" IsExpanded="true" />
+        <AssociationConnector Association="FloristModel.FK_allProducts_bouquet" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_allProducts_flowers" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_basket_allProducts" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_basket_user" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_order_basket" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_flowers_blossomSize" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_bouquetStructure_bouquet" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_bouquetStructure_flowers" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_salePoint_city" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_flowers_color" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_supplier_country" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_flowers_supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_flowers_type" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_order_salePoint" ManuallyRouted="false" />
+        <AssociationConnector Association="FloristModel.FK_user_role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,1028 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище FloristModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="allProducts">
+          <Key>
+            <PropertyRef Name="productsID" />
+          </Key>
+          <Property Name="productsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="flowerID" Type="int" />
+          <Property Name="bouquetID" Type="int" />
+        </EntityType>
+        <EntityType Name="basket">
+          <Key>
+            <PropertyRef Name="basketID" />
+          </Key>
+          <Property Name="basketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productsID" Type="int" Nullable="false" />
+          <Property Name="userID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="blossomSize">
+          <Key>
+            <PropertyRef Name="sizeID" />
+          </Key>
+          <Property Name="sizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="size" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bouquet">
+          <Key>
+            <PropertyRef Name="bouquetID" />
+          </Key>
+          <Property Name="bouquetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="img" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="bouquetStructure">
+          <Key>
+            <PropertyRef Name="structureID" />
+          </Key>
+          <Property Name="structureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bouquetID" Type="int" Nullable="false" />
+          <Property Name="flowerID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="cityID" />
+          </Key>
+          <Property Name="cityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="city" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="color">
+          <Key>
+            <PropertyRef Name="colorID" />
+          </Key>
+          <Property Name="colorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="color" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="countryID" />
+          </Key>
+          <Property Name="countryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="country" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="flowers">
+          <Key>
+            <PropertyRef Name="flowerID" />
+          </Key>
+          <Property Name="flowerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="typeID" Type="int" Nullable="false" />
+          <Property Name="colorID" Type="int" Nullable="false" />
+          <Property Name="sizeID" Type="int" Nullable="false" />
+          <Property Name="supplierID" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="img" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="basketID" Type="int" Nullable="false" />
+          <Property Name="salePointID" Type="int" Nullable="false" />
+          <Property Name="totalPrice" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="roleID" />
+          </Key>
+          <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="salePoint">
+          <Key>
+            <PropertyRef Name="salePointID" />
+          </Key>
+          <Property Name="salePointID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="workHour" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="phoneNum" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="cityID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="supplierID" />
+          </Key>
+          <Property Name="supplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="countryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="type">
+          <Key>
+            <PropertyRef Name="typeID" />
+          </Key>
+          <Property Name="typeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="roleID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_allProducts_bouquet">
+          <End Role="bouquet" Type="Self.bouquet" Multiplicity="0..1" />
+          <End Role="allProducts" Type="Self.allProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bouquet">
+              <PropertyRef Name="bouquetID" />
+            </Principal>
+            <Dependent Role="allProducts">
+              <PropertyRef Name="bouquetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_allProducts_flowers">
+          <End Role="flowers" Type="Self.flowers" Multiplicity="0..1" />
+          <End Role="allProducts" Type="Self.allProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="flowers">
+              <PropertyRef Name="flowerID" />
+            </Principal>
+            <Dependent Role="allProducts">
+              <PropertyRef Name="flowerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_basket_allProducts">
+          <End Role="allProducts" Type="Self.allProducts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="basket" Type="Self.basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="allProducts">
+              <PropertyRef Name="productsID" />
+            </Principal>
+            <Dependent Role="basket">
+              <PropertyRef Name="productsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_basket_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="basket" Type="Self.basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="basket">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bouquetStructure_bouquet">
+          <End Role="bouquet" Type="Self.bouquet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bouquetStructure" Type="Self.bouquetStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bouquet">
+              <PropertyRef Name="bouquetID" />
+            </Principal>
+            <Dependent Role="bouquetStructure">
+              <PropertyRef Name="bouquetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bouquetStructure_flowers">
+          <End Role="flowers" Type="Self.flowers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bouquetStructure" Type="Self.bouquetStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="flowers">
+              <PropertyRef Name="flowerID" />
+            </Principal>
+            <Dependent Role="bouquetStructure">
+              <PropertyRef Name="flowerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flowers_blossomSize">
+          <End Role="blossomSize" Type="Self.blossomSize" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="flowers" Type="Self.flowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blossomSize">
+              <PropertyRef Name="sizeID" />
+            </Principal>
+            <Dependent Role="flowers">
+              <PropertyRef Name="sizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flowers_color">
+          <End Role="color" Type="Self.color" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="flowers" Type="Self.flowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="color">
+              <PropertyRef Name="colorID" />
+            </Principal>
+            <Dependent Role="flowers">
+              <PropertyRef Name="colorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flowers_supplier">
+          <End Role="supplier" Type="Self.supplier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="flowers" Type="Self.flowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplier">
+              <PropertyRef Name="supplierID" />
+            </Principal>
+            <Dependent Role="flowers">
+              <PropertyRef Name="supplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flowers_type">
+          <End Role="type" Type="Self.type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="flowers" Type="Self.flowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="flowers">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_basket">
+          <End Role="basket" Type="Self.basket" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basket">
+              <PropertyRef Name="basketID" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="basketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_salePoint">
+          <End Role="salePoint" Type="Self.salePoint" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="salePoint">
+              <PropertyRef Name="salePointID" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="salePointID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_salePoint_city">
+          <End Role="city" Type="Self.city" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="salePoint" Type="Self.salePoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="cityID" />
+            </Principal>
+            <Dependent Role="salePoint">
+              <PropertyRef Name="cityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_supplier_country">
+          <End Role="country" Type="Self.country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="supplier" Type="Self.supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="countryID" />
+            </Principal>
+            <Dependent Role="supplier">
+              <PropertyRef Name="countryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_role">
+          <End Role="role" Type="Self.role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="roleID" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FloristModelContainer">
+          <EntitySet Name="allProducts" EntityType="Self.allProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="basket" EntityType="Self.basket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="blossomSize" EntityType="Self.blossomSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bouquet" EntityType="Self.bouquet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bouquetStructure" EntityType="Self.bouquetStructure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="color" EntityType="Self.color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="flowers" EntityType="Self.flowers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salePoint" EntityType="Self.salePoint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="type" EntityType="Self.type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_allProducts_bouquet" Association="Self.FK_allProducts_bouquet">
+            <End Role="bouquet" EntitySet="bouquet" />
+            <End Role="allProducts" EntitySet="allProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_allProducts_flowers" Association="Self.FK_allProducts_flowers">
+            <End Role="flowers" EntitySet="flowers" />
+            <End Role="allProducts" EntitySet="allProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_basket_allProducts" Association="Self.FK_basket_allProducts">
+            <End Role="allProducts" EntitySet="allProducts" />
+            <End Role="basket" EntitySet="basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_basket_user" Association="Self.FK_basket_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="basket" EntitySet="basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bouquetStructure_bouquet" Association="Self.FK_bouquetStructure_bouquet">
+            <End Role="bouquet" EntitySet="bouquet" />
+            <End Role="bouquetStructure" EntitySet="bouquetStructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bouquetStructure_flowers" Association="Self.FK_bouquetStructure_flowers">
+            <End Role="flowers" EntitySet="flowers" />
+            <End Role="bouquetStructure" EntitySet="bouquetStructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flowers_blossomSize" Association="Self.FK_flowers_blossomSize">
+            <End Role="blossomSize" EntitySet="blossomSize" />
+            <End Role="flowers" EntitySet="flowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flowers_color" Association="Self.FK_flowers_color">
+            <End Role="color" EntitySet="color" />
+            <End Role="flowers" EntitySet="flowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flowers_supplier" Association="Self.FK_flowers_supplier">
+            <End Role="supplier" EntitySet="supplier" />
+            <End Role="flowers" EntitySet="flowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flowers_type" Association="Self.FK_flowers_type">
+            <End Role="type" EntitySet="type" />
+            <End Role="flowers" EntitySet="flowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_basket" Association="Self.FK_order_basket">
+            <End Role="basket" EntitySet="basket" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_salePoint" Association="Self.FK_order_salePoint">
+            <End Role="salePoint" EntitySet="salePoint" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_salePoint_city" Association="Self.FK_salePoint_city">
+            <End Role="city" EntitySet="city" />
+            <End Role="salePoint" EntitySet="salePoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_supplier_country" Association="Self.FK_supplier_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="supplier" EntitySet="supplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_role" Association="Self.FK_user_role">
+            <End Role="role" EntitySet="role" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FloristModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="allProducts">
+          <Key>
+            <PropertyRef Name="productsID" />
+          </Key>
+          <Property Name="productsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="flowerID" Type="Int32" />
+          <Property Name="bouquetID" Type="Int32" />
+          <NavigationProperty Name="bouquet" Relationship="Self.FK_allProducts_bouquet" FromRole="allProducts" ToRole="bouquet" />
+          <NavigationProperty Name="flowers" Relationship="Self.FK_allProducts_flowers" FromRole="allProducts" ToRole="flowers" />
+          <NavigationProperty Name="basket" Relationship="Self.FK_basket_allProducts" FromRole="allProducts" ToRole="basket" />
+        </EntityType>
+        <EntityType Name="basket">
+          <Key>
+            <PropertyRef Name="basketID" />
+          </Key>
+          <Property Name="basketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productsID" Type="Int32" Nullable="false" />
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="allProducts" Relationship="Self.FK_basket_allProducts" FromRole="basket" ToRole="allProducts" />
+          <NavigationProperty Name="user" Relationship="Self.FK_basket_user" FromRole="basket" ToRole="user" />
+          <NavigationProperty Name="order" Relationship="Self.FK_order_basket" FromRole="basket" ToRole="order" />
+        </EntityType>
+        <EntityType Name="blossomSize">
+          <Key>
+            <PropertyRef Name="sizeID" />
+          </Key>
+          <Property Name="sizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="size" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="flowers" Relationship="Self.FK_flowers_blossomSize" FromRole="blossomSize" ToRole="flowers" />
+        </EntityType>
+        <EntityType Name="bouquet">
+          <Key>
+            <PropertyRef Name="bouquetID" />
+          </Key>
+          <Property Name="bouquetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="allProducts" Relationship="Self.FK_allProducts_bouquet" FromRole="bouquet" ToRole="allProducts" />
+          <NavigationProperty Name="bouquetStructure" Relationship="Self.FK_bouquetStructure_bouquet" FromRole="bouquet" ToRole="bouquetStructure" />
+        </EntityType>
+        <EntityType Name="bouquetStructure">
+          <Key>
+            <PropertyRef Name="structureID" />
+          </Key>
+          <Property Name="structureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bouquetID" Type="Int32" Nullable="false" />
+          <Property Name="flowerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bouquet" Relationship="Self.FK_bouquetStructure_bouquet" FromRole="bouquetStructure" ToRole="bouquet" />
+          <NavigationProperty Name="flowers" Relationship="Self.FK_bouquetStructure_flowers" FromRole="bouquetStructure" ToRole="flowers" />
+        </EntityType>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="cityID" />
+          </Key>
+          <Property Name="cityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="city1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="salePoint" Relationship="Self.FK_salePoint_city" FromRole="city" ToRole="salePoint" />
+        </EntityType>
+        <EntityType Name="color">
+          <Key>
+            <PropertyRef Name="colorID" />
+          </Key>
+          <Property Name="colorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="color1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="flowers" Relationship="Self.FK_flowers_color" FromRole="color" ToRole="flowers" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="countryID" />
+          </Key>
+          <Property Name="countryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="country1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="supplier" Relationship="Self.FK_supplier_country" FromRole="country" ToRole="supplier" />
+        </EntityType>
+        <EntityType Name="flowers">
+          <Key>
+            <PropertyRef Name="flowerID" />
+          </Key>
+          <Property Name="flowerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="typeID" Type="Int32" Nullable="false" />
+          <Property Name="colorID" Type="Int32" Nullable="false" />
+          <Property Name="sizeID" Type="Int32" Nullable="false" />
+          <Property Name="supplierID" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="allProducts" Relationship="Self.FK_allProducts_flowers" FromRole="flowers" ToRole="allProducts" />
+          <NavigationProperty Name="blossomSize" Relationship="Self.FK_flowers_blossomSize" FromRole="flowers" ToRole="blossomSize" />
+          <NavigationProperty Name="bouquetStructure" Relationship="Self.FK_bouquetStructure_flowers" FromRole="flowers" ToRole="bouquetStructure" />
+          <NavigationProperty Name="color" Relationship="Self.FK_flowers_color" FromRole="flowers" ToRole="color" />
+          <NavigationProperty Name="supplier" Relationship="Self.FK_flowers_supplier" FromRole="flowers" ToRole="supplier" />
+          <NavigationProperty Name="type" Relationship="Self.FK_flowers_type" FromRole="flowers" ToRole="type" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="basketID" Type="Int32" Nullable="false" />
+          <Property Name="salePointID" Type="Int32" Nullable="false" />
+          <Property Name="totalPrice" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="basket" Relationship="Self.FK_order_basket" FromRole="order" ToRole="basket" />
+          <NavigationProperty Name="salePoint" Relationship="Self.FK_order_salePoint" FromRole="order" ToRole="salePoint" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="roleID" />
+          </Key>
+          <Property Name="roleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.FK_user_role" FromRole="role" ToRole="user" />
+        </EntityType>
+        <EntityType Name="salePoint">
+          <Key>
+            <PropertyRef Name="salePointID" />
+          </Key>
+          <Property Name="salePointID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="workHour" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phoneNum" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cityID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="city" Relationship="Self.FK_salePoint_city" FromRole="salePoint" ToRole="city" />
+          <NavigationProperty Name="order" Relationship="Self.FK_order_salePoint" FromRole="salePoint" ToRole="order" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="supplierID" />
+          </Key>
+          <Property Name="supplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="countryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.FK_supplier_country" FromRole="supplier" ToRole="country" />
+          <NavigationProperty Name="flowers" Relationship="Self.FK_flowers_supplier" FromRole="supplier" ToRole="flowers" />
+        </EntityType>
+        <EntityType Name="type">
+          <Key>
+            <PropertyRef Name="typeID" />
+          </Key>
+          <Property Name="typeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="flowers" Relationship="Self.FK_flowers_type" FromRole="type" ToRole="flowers" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="roleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="basket" Relationship="Self.FK_basket_user" FromRole="user" ToRole="basket" />
+          <NavigationProperty Name="role" Relationship="Self.FK_user_role" FromRole="user" ToRole="role" />
+        </EntityType>
+        <Association Name="FK_allProducts_bouquet">
+          <End Role="bouquet" Type="Self.bouquet" Multiplicity="0..1" />
+          <End Role="allProducts" Type="Self.allProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bouquet">
+              <PropertyRef Name="bouquetID" />
+            </Principal>
+            <Dependent Role="allProducts">
+              <PropertyRef Name="bouquetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_allProducts_flowers">
+          <End Role="flowers" Type="Self.flowers" Multiplicity="0..1" />
+          <End Role="allProducts" Type="Self.allProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="flowers">
+              <PropertyRef Name="flowerID" />
+            </Principal>
+            <Dependent Role="allProducts">
+              <PropertyRef Name="flowerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_basket_allProducts">
+          <End Role="allProducts" Type="Self.allProducts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="basket" Type="Self.basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="allProducts">
+              <PropertyRef Name="productsID" />
+            </Principal>
+            <Dependent Role="basket">
+              <PropertyRef Name="productsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_basket_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="basket" Type="Self.basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="basket">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_basket">
+          <End Role="basket" Type="Self.basket" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="basket">
+              <PropertyRef Name="basketID" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="basketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flowers_blossomSize">
+          <End Role="blossomSize" Type="Self.blossomSize" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="flowers" Type="Self.flowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blossomSize">
+              <PropertyRef Name="sizeID" />
+            </Principal>
+            <Dependent Role="flowers">
+              <PropertyRef Name="sizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bouquetStructure_bouquet">
+          <End Role="bouquet" Type="Self.bouquet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bouquetStructure" Type="Self.bouquetStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bouquet">
+              <PropertyRef Name="bouquetID" />
+            </Principal>
+            <Dependent Role="bouquetStructure">
+              <PropertyRef Name="bouquetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bouquetStructure_flowers">
+          <End Role="flowers" Type="Self.flowers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bouquetStructure" Type="Self.bouquetStructure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="flowers">
+              <PropertyRef Name="flowerID" />
+            </Principal>
+            <Dependent Role="bouquetStructure">
+              <PropertyRef Name="flowerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_salePoint_city">
+          <End Role="city" Type="Self.city" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="salePoint" Type="Self.salePoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city">
+              <PropertyRef Name="cityID" />
+            </Principal>
+            <Dependent Role="salePoint">
+              <PropertyRef Name="cityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flowers_color">
+          <End Role="color" Type="Self.color" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="flowers" Type="Self.flowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="color">
+              <PropertyRef Name="colorID" />
+            </Principal>
+            <Dependent Role="flowers">
+              <PropertyRef Name="colorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_supplier_country">
+          <End Role="country" Type="Self.country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="supplier" Type="Self.supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="countryID" />
+            </Principal>
+            <Dependent Role="supplier">
+              <PropertyRef Name="countryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flowers_supplier">
+          <End Role="supplier" Type="Self.supplier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="flowers" Type="Self.flowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplier">
+              <PropertyRef Name="supplierID" />
+            </Principal>
+            <Dependent Role="flowers">
+              <PropertyRef Name="supplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flowers_type">
+          <End Role="type" Type="Self.type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="flowers" Type="Self.flowers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type">
+              <PropertyRef Name="typeID" />
+            </Principal>
+            <Dependent Role="flowers">
+              <PropertyRef Name="typeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_salePoint">
+          <End Role="salePoint" Type="Self.salePoint" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="order" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="salePoint">
+              <PropertyRef Name="salePointID" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="salePointID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_role">
+          <End Role="role" Type="Self.role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="roleID" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FloristEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="allProducts" EntityType="Self.allProducts" />
+          <EntitySet Name="basket" EntityType="Self.basket" />
+          <EntitySet Name="blossomSize" EntityType="Self.blossomSize" />
+          <EntitySet Name="bouquet" EntityType="Self.bouquet" />
+          <EntitySet Name="bouquetStructure" EntityType="Self.bouquetStructure" />
+          <EntitySet Name="city" EntityType="Self.city" />
+          <EntitySet Name="color" EntityType="Self.color" />
+          <EntitySet Name="country" EntityType="Self.country" />
+          <EntitySet Name="flowers" EntityType="Self.flowers" />
+          <EntitySet Name="order" EntityType="Self.order" />
+          <EntitySet Name="role" EntityType="Self.role" />
+          <EntitySet Name="salePoint" EntityType="Self.salePoint" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" />
+          <EntitySet Name="type" EntityType="Self.type" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <AssociationSet Name="FK_allProducts_bouquet" Association="Self.FK_allProducts_bouquet">
+            <End Role="bouquet" EntitySet="bouquet" />
+            <End Role="allProducts" EntitySet="allProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_allProducts_flowers" Association="Self.FK_allProducts_flowers">
+            <End Role="flowers" EntitySet="flowers" />
+            <End Role="allProducts" EntitySet="allProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_basket_allProducts" Association="Self.FK_basket_allProducts">
+            <End Role="allProducts" EntitySet="allProducts" />
+            <End Role="basket" EntitySet="basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_basket_user" Association="Self.FK_basket_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="basket" EntitySet="basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_basket" Association="Self.FK_order_basket">
+            <End Role="basket" EntitySet="basket" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flowers_blossomSize" Association="Self.FK_flowers_blossomSize">
+            <End Role="blossomSize" EntitySet="blossomSize" />
+            <End Role="flowers" EntitySet="flowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bouquetStructure_bouquet" Association="Self.FK_bouquetStructure_bouquet">
+            <End Role="bouquet" EntitySet="bouquet" />
+            <End Role="bouquetStructure" EntitySet="bouquetStructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bouquetStructure_flowers" Association="Self.FK_bouquetStructure_flowers">
+            <End Role="flowers" EntitySet="flowers" />
+            <End Role="bouquetStructure" EntitySet="bouquetStructure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_salePoint_city" Association="Self.FK_salePoint_city">
+            <End Role="city" EntitySet="city" />
+            <End Role="salePoint" EntitySet="salePoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flowers_color" Association="Self.FK_flowers_color">
+            <End Role="color" EntitySet="color" />
+            <End Role="flowers" EntitySet="flowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_supplier_country" Association="Self.FK_supplier_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="supplier" EntitySet="supplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flowers_supplier" Association="Self.FK_flowers_supplier">
+            <End Role="supplier" EntitySet="supplier" />
+            <End Role="flowers" EntitySet="flowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flowers_type" Association="Self.FK_flowers_type">
+            <End Role="type" EntitySet="type" />
+            <End Role="flowers" EntitySet="flowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_salePoint" Association="Self.FK_order_salePoint">
+            <End Role="salePoint" EntitySet="salePoint" />
+            <End Role="order" EntitySet="order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_role" Association="Self.FK_user_role">
+            <End Role="role" EntitySet="role" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FloristModelContainer" CdmEntityContainer="FloristEntities">
+          <EntitySetMapping Name="allProducts">
+            <EntityTypeMapping TypeName="FloristModel.allProducts">
+              <MappingFragment StoreEntitySet="allProducts">
+                <ScalarProperty Name="productsID" ColumnName="productsID" />
+                <ScalarProperty Name="flowerID" ColumnName="flowerID" />
+                <ScalarProperty Name="bouquetID" ColumnName="bouquetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="basket">
+            <EntityTypeMapping TypeName="FloristModel.basket">
+              <MappingFragment StoreEntitySet="basket">
+                <ScalarProperty Name="basketID" ColumnName="basketID" />
+                <ScalarProperty Name="productsID" ColumnName="productsID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blossomSize">
+            <EntityTypeMapping TypeName="FloristModel.blossomSize">
+              <MappingFragment StoreEntitySet="blossomSize">
+                <ScalarProperty Name="sizeID" ColumnName="sizeID" />
+                <ScalarProperty Name="size" ColumnName="size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bouquet">
+            <EntityTypeMapping TypeName="FloristModel.bouquet">
+              <MappingFragment StoreEntitySet="bouquet">
+                <ScalarProperty Name="bouquetID" ColumnName="bouquetID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bouquetStructure">
+            <EntityTypeMapping TypeName="FloristModel.bouquetStructure">
+              <MappingFragment StoreEntitySet="bouquetStructure">
+                <ScalarProperty Name="structureID" ColumnName="structureID" />
+                <ScalarProperty Name="bouquetID" ColumnName="bouquetID" />
+                <ScalarProperty Name="flowerID" ColumnName="flowerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="city">
+            <EntityTypeMapping TypeName="FloristModel.city">
+              <MappingFragment StoreEntitySet="city">
+                <ScalarProperty Name="cityID" ColumnName="cityID" />
+                <ScalarProperty Name="city1" ColumnName="city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="color">
+            <EntityTypeMapping TypeName="FloristModel.color">
+              <MappingFragment StoreEntitySet="color">
+                <ScalarProperty Name="colorID" ColumnName="colorID" />
+                <ScalarProperty Name="color1" ColumnName="color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="country">
+            <EntityTypeMapping TypeName="FloristModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="country1" ColumnName="country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="flowers">
+            <EntityTypeMapping TypeName="FloristModel.flowers">
+              <MappingFragment StoreEntitySet="flowers">
+                <ScalarProperty Name="flowerID" ColumnName="flowerID" />
+                <ScalarProperty Name="typeID" ColumnName="typeID" />
+                <ScalarProperty Name="colorID" ColumnName="colorID" />
+                <ScalarProperty Name="sizeID" ColumnName="sizeID" />
+                <ScalarProperty Name="supplierID" ColumnName="supplierID" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order">
+            <EntityTypeMapping TypeName="FloristModel.order">
+              <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="basketID" ColumnName="basketID" />
+                <ScalarProperty Name="salePointID" ColumnName="salePointID" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role">
+            <EntityTypeMapping TypeName="FloristModel.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salePoint">
+            <EntityTypeMapping TypeName="FloristModel.salePoint">
+              <MappingFragment StoreEntitySet="salePoint">
+                <ScalarProperty Name="salePointID" ColumnName="salePointID" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="workHour" ColumnName="workHour" />
+                <ScalarProperty Name="phoneNum" ColumnName="phoneNum" />
+                <ScalarProperty Name="cityID" ColumnName="cityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplier">
+            <EntityTypeMapping TypeName="FloristModel.supplier">
+              <MappingFragment StoreEntitySet="supplier">
+                <ScalarProperty Name="supplierID" ColumnName="supplierID" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="type">
+            <EntityTypeMapping TypeName="FloristModel.type">
+              <MappingFragment StoreEntitySet="type">
+                <ScalarProperty Name="typeID" ColumnName="typeID" />
+                <ScalarProperty Name="type1" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="FloristModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
