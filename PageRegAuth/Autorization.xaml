@@ -23,7 +23,7 @@
         <Button x:Name="btEnter" Cursor="Hand" Content="Войти" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Width="324" Height="45" FontSize="16" BorderBrush="#FF3E8440" Background="#FFBADD7F" Foreground="#FF3E8440" Click="btEnter_Click" />
         <Button x:Name="btReg" Cursor="Hand" Content="Регистрация" HorizontalAlignment="Center" Margin="0,281,0,0" VerticalAlignment="Top" Width="324" Height="45" FontSize="16" BorderBrush="#FF3E8440" Background="#FFBADD7F" Foreground="#FF3E8440" Click="btReg_Click" />
         <Label Content="АртФлора" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,0,0,0" Foreground="#FF3E8440" FontSize="36" Height="63"/>
-        <Image HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Margin="0,0,0,0" Width="109" Source="/PageRegAuth/logo-png.png"/>
+        <Image HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Margin="0,0,0,0" Width="109" Source="/Images/logo-png.png"/>
 
     </Grid>
 </Page>

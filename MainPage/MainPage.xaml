@@ -3,12 +3,115 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:florist.MainPage"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainPage">
-
+      xmlns:local="clr-namespace:florist.AppData"
+      mc:Ignorable="d"
+      Title="MainPage" Background="#FFF7EFDA" Height="523" Width="885">
+    <Page.Resources>
+        <local:BoolToVisibilityConverter x:Key="VisibilityConverter"/>
+    </Page.Resources>
     <Grid>
-        
+        <Label Content="АртФлора" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,0,0,0" Foreground="#FF3E8440" FontSize="36" Height="63"/>
+        <Image HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Margin="0,0,0,0" Width="109" Source="/Images/logo-png.png"/>
+        <Grid Margin="10, 70, 10, 90">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="7*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="5, 10, 0, 0" HorizontalAlignment="Left" Orientation="Vertical" Grid.Column="0">
+                <TextBlock Text="Сортировать: " HorizontalAlignment="Left" Width="180" Margin="0,0,0,5" FontSize="18"></TextBlock>
+                <ComboBox x:Name="cbSort" FontSize="16">
+                    <ComboBoxItem IsSelected="True" Content="Дешевле"/>
+                    <ComboBoxItem Content="Дороже"/>
+                </ComboBox>
+
+                <TextBlock Text="Товар: " HorizontalAlignment="Left" Width="180" Margin="0, 10, 0, 5" FontSize="18"></TextBlock>
+                <ComboBox x:Name="cbProduct" FontSize="16">
+                    <ComboBoxItem IsSelected="True" Content="Цветы"/>
+                    <ComboBoxItem Content="Букеты"/>
+                </ComboBox>
+
+                <TextBlock HorizontalAlignment="Left" Margin="0,10,0,5" FontSize="18" Text="Поиск:"></TextBlock>
+                <TextBox x:Name="tbSearch" Height="30" Padding="5"></TextBox>
+                <StackPanel Margin="0,30,0,5" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto">
+                    <Image Source="/Images/basket.png" Width="45"/>
+                    <TextBlock x:Name="totalPrice" FontSize="22" Margin="0,10,0,0"></TextBlock>
+                    <TextBlock FontSize="22" Text=" p." Margin="0,10,0,0"></TextBlock>
+                </StackPanel>
+                <Button x:Name="btToBasket" FontSize="19" Height="45" Margin="0,10,0,0" Content="Перейти в корзину" Click="btToBasket_Click"></Button>
+            </StackPanel>
+            <ListView x:Name="lvProducts" Grid.Column="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="320"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Img}"/>
+                            <StackPanel Width="auto" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left">
+                                <StackPanel Visibility="{Binding IsFlower, Converter={StaticResource VisibilityConverter}}">
+                                    <TextBlock FontSize="16" Width="auto" TextWrapping="Wrap" Height="auto">
+                                        <Run Text="Семейство: "/>
+                                        <Run FontSize="16" Text="{Binding Type}"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="16" Width="auto" TextWrapping="Wrap" Height="auto">
+                                        <Run Text="Цвет: "/>
+                                        <Run FontSize="16" Text="{Binding Color}"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="16" Width="auto" TextWrapping="Wrap" Height="auto">
+                                        <Run Text="Размер бутона: "/>
+                                        <Run FontSize="16" Text="{Binding Size}"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="16" Width="auto" TextWrapping="Wrap" Height="auto">
+                                        <Run Text="Страна выращивания: "/>
+                                        <Run FontSize="16" Text="{Binding Country}"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="16" Width="auto" TextWrapping="Wrap" Height="auto">
+                                        <Run Text="Цена за штуку: "/>
+                                        <Run FontSize="16" Text="{Binding Price}"/>
+                                    </TextBlock>
+                                </StackPanel>
+                                <StackPanel Visibility="{Binding IsFlower, Converter={StaticResource VisibilityConverter}, ConverterParameter=Inverse}">
+                                    <TextBlock FontSize="16" Width="auto" TextWrapping="Wrap" Height="auto">
+                                        <Run Text="Название букета: "/>
+                                        <Run FontSize="16" Text="{Binding BouquetName}"/>
+                                    </TextBlock>
+                                    <ItemsControl ItemsSource="{Binding Composition}"
+                                                  Margin="10,0">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock>
+                                                    <Run Text="{Binding FlowerName}"/>
+                                                    <Run Text=" "/>
+                                                    <Run Text="{Binding FlowerColor}"/>
+                                                    <Run Text=" "/>
+                                                    <Run Text="{Binding FlowerSize}"/>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <TextBlock>
+                                        <Run Text="Цена: "/>
+                                        <Run Text="{Binding BouquetPrice}"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Orientation="Vertical">
+                                <!-- Общие элементы управления -->
+                                <Button x:Name="btBuy" Content="Купить" Margin="0,5" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440"/>
+
+                                <!-- Админские кнопки (видны только админу) -->
+                                <StackPanel x:Name="AdminPanel" Visibility="{Binding IsAdmin, Converter={StaticResource VisibilityConverter}}">
+                                    <Button x:Name="btEdit" Content="Редактировать" Margin="0,5" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440"/>
+                                    <Button x:Name="btDelete" Content="Удалить" Margin="0,5" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </Grid>
     </Grid>
 </Page>
