@@ -57,6 +57,7 @@ namespace florist.MainPage
                     mixedProducts.Add(new ProductItem
                     {
                         IsFlower = true,
+                        FlowerId = flower.flowerID,
                         Img = !string.IsNullOrEmpty(flower.img) ? $"/Images/{flower.img}" : "/Images/none.png",
                         Type = flower.type.type1,
                         Color = flower.color.color1,
@@ -83,6 +84,7 @@ namespace florist.MainPage
                     mixedProducts.Add(new ProductItem
                     {
                         IsFlower = false,
+                        BouquetId = bouquet.bouquetID,
                         Img = !string.IsNullOrEmpty(bouquet.img) ? $"/Images/{bouquet.img}" : "/Images/none.png",
                         BouquetName = bouquet.name,
                         BouquetPrice = bouquet.price,
@@ -144,6 +146,77 @@ namespace florist.MainPage
         private void btToBasket_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btExit_Click(object sender, RoutedEventArgs e)
+        {
+            AppData.MainFrame.FrameMain.Navigate(new Autorization());
+        }
+
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (((FrameworkElement)sender).DataContext is ProductItem product)
+            {
+                try
+                {
+                    var result = MessageBox.Show(
+                        $"Вы точно хотите удалить {(product.IsFlower ? "цветок" : "букет")}? Связанные объекты также удаляться!",
+                        "Подтверждение удаления",
+                        MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result != MessageBoxResult.Yes) return;
+                    if (product.IsFlower) 
+                    {
+                        DeleteFlower(product.FlowerId);
+                    }
+                    else
+                    {
+                        DeleteBouquet(product.BouquetId);
+                    }
+                    mixedProducts.Remove(product);
+                    MessageBox.Show("Удаление выполнено успешно", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                    lvProducts.Items.Refresh();
+                }
+                catch (Exception ex) 
+                {
+                    MessageBox.Show($"Ошибка при удалении: {ex.Message}\n\nДетали:\n{ex.InnerException?.Message}",
+                          "Ошибка",
+                          MessageBoxButton.OK,
+                          MessageBoxImage.Error);
+                }
+            }
+            lvProducts.Items.Refresh();
+        }
+        private void DeleteFlower(int flowerId)
+        {
+            var relatedProducts = AppConnect.Model.allProducts
+                .Where(ap => ap.flowerID == flowerId)
+                .ToList();
+            foreach (var product in relatedProducts)
+            {
+                AppConnect.Model.allProducts.Remove(product);
+            }
+            var flower = AppConnect.Model.flowers.Find(flowerId);
+            if (flower != null)
+            {
+                AppConnect.Model.flowers.Remove(flower);
+                AppConnect.Model.SaveChanges();
+            }
+        }
+        private void DeleteBouquet(int bouquetId)
+        {
+            var relatedProducts = AppConnect.Model.allProducts
+                .Where(ap => ap.bouquetID == bouquetId)
+                .ToList();
+            foreach (var product in relatedProducts)
+            {
+                AppConnect.Model.allProducts.Remove(product);
+            }
+            var bouquet = AppConnect.Model.bouquet.Find(bouquetId);
+            if (bouquet != null)
+            {
+                AppConnect.Model.bouquet.Remove(bouquet);
+                AppConnect.Model.SaveChanges();
+            }
         }
     }
 }

@@ -8,6 +8,8 @@ namespace florist.AppData
 {
     public class ProductItem
     {
+        public int FlowerId { get; set; } 
+        public int BouquetId { get; set; }
         // Общие свойства
         public bool IsFlower { get; set; }
         public bool IsAdmin { get; set; }

@@ -37,7 +37,7 @@
                     <TextBlock x:Name="totalPrice" FontSize="22" Margin="0,10,0,0"></TextBlock>
                     <TextBlock FontSize="22" Text=" p." Margin="0,10,0,0"></TextBlock>
                 </StackPanel>
-                <Button x:Name="btToBasket" FontSize="19" Height="45" Margin="0,10,0,0" Content="Перейти в корзину" Click="btToBasket_Click"></Button>
+                <Button x:Name="btToBasket" FontSize="19" Height="45" Margin="0,10,0,0" Content="Перейти в корзину" Click="btToBasket_Click" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440"></Button>
             </StackPanel>
             <ListView x:Name="lvProducts" Grid.Column="1">
                 <ListView.ItemTemplate>
@@ -104,14 +104,17 @@
                                 <!-- Админские кнопки (видны только админу) -->
                                 <StackPanel x:Name="AdminPanel" Visibility="{Binding IsAdmin, Converter={StaticResource VisibilityConverter}}">
                                     <Button x:Name="btEdit" Content="Редактировать" Margin="0,5" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440"/>
-                                    <Button x:Name="btDelete" Content="Удалить" Margin="0,5" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440"/>
+                                    <Button x:Name="btDelete" Content="Удалить" Margin="0,5" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="btDelete_Click"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            
+
         </Grid>
+        <Button x:Name="btAdd" Content="Добавить товар" HorizontalAlignment="Left" Margin="31,448,0,0" VerticalAlignment="Top" Width="120" Height="50" FontSize="16" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440"/>
+        <Button x:Name="btExit" Content="Выйти" HorizontalAlignment="Left" Margin="782,472,0,0" VerticalAlignment="Top" Width="93" Height="26" FontSize="16" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="btExit_Click"/>
+
     </Grid>
 </Page>
