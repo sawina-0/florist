@@ -31,6 +31,7 @@ namespace florist.MainPage
             InitializeComponent();
             InitializeControls();
             LoadProducts();
+            btAdd.Visibility = Autorization.getUserRole() == "администратор" ? Visibility.Visible : Visibility.Collapsed;
         }
         private void InitializeControls()
         {
@@ -145,7 +146,7 @@ namespace florist.MainPage
         }
         private void btToBasket_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.FrameMain.Navigate(new BasketView());
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)
@@ -217,6 +218,41 @@ namespace florist.MainPage
                 AppConnect.Model.bouquet.Remove(bouquet);
                 AppConnect.Model.SaveChanges();
             }
+        }
+
+        private void btBuy_Click(object sender, RoutedEventArgs e)
+        {
+            if (((FrameworkElement)sender).DataContext is ProductItem product)
+            {
+                try
+                {
+                    int currentUserId = (int)Application.Current.Properties["CurrentUserId"];
+                    
+                    var productInDb = AppConnect.Model.allProducts
+                        .FirstOrDefault(p => 
+                            (product.IsFlower && p.flowerID == product.FlowerId) ||
+                            (!product.IsFlower && p.bouquetID == product.BouquetId));
+                    if (productInDb == null)
+                    {
+                        MessageBox.Show("Товар не найден в базе данных!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+                    var basketItem = new basket
+                    {
+                        userID = currentUserId,
+                        productsID = productInDb.productsID
+                    };
+                    AppConnect.Model.basket.Add(basketItem);
+                    AppConnect.Model.SaveChanges();
+
+                    MessageBox.Show("Товар добавлен в корзину!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show($"Ошибка: {ex.Message}");
+                }
+            } 
         }
     }
 }

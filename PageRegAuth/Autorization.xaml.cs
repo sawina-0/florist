@@ -46,6 +46,7 @@ namespace florist.PageRegAuth
                     tbPass.Password = "";
                     user = UserObj;
                     MainFrame.FrameMain.Navigate(new MainPage.MainPage());
+                    Application.Current.Properties["CurrentUserId"] = user.userID;
                 }
             }
             catch (Exception ex)

@@ -99,7 +99,7 @@
                             </StackPanel>
                             <StackPanel Grid.Column="2" Orientation="Vertical">
                                 <!-- Общие элементы управления -->
-                                <Button x:Name="btBuy" Content="Купить" Margin="0,5" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440"/>
+                                <Button x:Name="btBuy" Content="Купить" Margin="0,5" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="btBuy_Click"/>
 
                                 <!-- Админские кнопки (видны только админу) -->
                                 <StackPanel x:Name="AdminPanel" Visibility="{Binding IsAdmin, Converter={StaticResource VisibilityConverter}}">
