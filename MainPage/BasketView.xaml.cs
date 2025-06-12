@@ -1,5 +1,6 @@
 ﻿using florist.AppData;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
@@ -14,6 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using PdfSharp.Fonts;
 
 namespace florist.MainPage
 {
@@ -28,6 +32,7 @@ namespace florist.MainPage
             InitializeComponent();
             currentUserId = GetCurrentUserId();
             LoadBasketData();
+            LoadCities();
         }
 
         private void btBack_Click(object sender, RoutedEventArgs e)
@@ -108,14 +113,93 @@ namespace florist.MainPage
         {
             try
             {
+                if (cbCity.SelectedItem == null)
+                {
+                    MessageBox.Show("Пожалуйста, выберите город.");
+                    return; 
+                }
 
+                if (cbSP.SelectedItem == null)
+                {
+                    MessageBox.Show("Пожалуйста, выберите адрес торговой точки.");
+                    return; 
+                }
+
+                var selectedSalePoint = (salePoint)cbSP.SelectedItem;
+                int salePointId = selectedSalePoint?.salePointID ?? 0;
+
+                var order = new order
+                {
+                    basketID = ((BasketItem)lvBasketItems.Items[0]).BasketId,
+                    salePointID = salePointId,
+                    totalPrice = (int)((List<BasketItem>)lvBasketItems.ItemsSource).Sum(i => i.Price)
+                };
+                AppConnect.Model.order.Add(order);
+                AppConnect.Model.SaveChanges();
+                generateCheck();
+                MessageBox.Show("Заказ оформлен успешно, можете убрать товар из корзины");
+                LoadBasketData();
+                
             }
             catch(Exception ex)
             {
-
+                MessageBox.Show($"Ошибка оформления: {ex.Message}");
             }
         }
+        
+        private void generateCheck()
+        {
+            try
+            {
+                GlobalFontSettings.FontResolver = new MyFontResolver();
 
+                PdfDocument document = new PdfDocument();
+                PdfPage page = document.AddPage();
+                XGraphics gfx = XGraphics.FromPdfPage(page);
+
+                XFont font = new XFont("Arial", 16);
+
+
+                XRect rect = new XRect(180, 40, page.Width, page.Height);
+                gfx.DrawString("КАССОВЫЙ ЧЕК АртФлора", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                XRect separatorRect = new XRect(40, 140, page.Width, page.Height);
+                gfx.DrawString("----------------------------------------------------------------------", font, XBrushes.Black, separatorRect, XStringFormats.TopLeft);
+
+                XRect totalRect = new XRect(40, 180, page.Width, page.Height);
+                gfx.DrawString("Сумма = " + ((List<BasketItem>)lvBasketItems.ItemsSource).Sum(i => i.Price).ToString("F2") + " р.", font, XBrushes.Black, totalRect, XStringFormats.TopLeft);
+
+                DateTime currentDateTime = DateTime.Now;
+                XRect dateRect = new XRect(40, 220, page.Width, page.Height);
+                gfx.DrawString("Дата Время = " + currentDateTime.ToString(), font, XBrushes.Black, dateRect, XStringFormats.TopLeft);
+
+                int prevHeight = 280;
+
+                var basketItems = (List<BasketItem>)lvBasketItems.ItemsSource;
+                foreach (var item in basketItems)
+                {
+                    XRect itemRect = new XRect(40, prevHeight, page.Width, page.Height);
+                    gfx.DrawString($"Название: {item.Name}, Цена: {item.Price:F2} р.", font, XBrushes.Black, itemRect, XStringFormats.TopLeft);
+                    prevHeight += 30; // Увеличиваем высоту для следующего элемента
+                }
+
+                XRect finalSeparatorRect = new XRect(40, prevHeight, page.Width, page.Height);
+                gfx.DrawString("----------------------------------------------------------------------", font, XBrushes.Black, finalSeparatorRect, XStringFormats.TopLeft);
+                prevHeight += 40;
+
+                XRect thankYouRect = new XRect(180, prevHeight, page.Width, page.Height);
+                gfx.DrawString("СПАСИБО ЗА ПОКУПКУ!", font, XBrushes.Black, thankYouRect, XStringFormats.TopLeft);
+
+                string pdfFilename = "чек.pdf";
+                document.Save(pdfFilename);
+                System.Diagnostics.Process.Start(pdfFilename);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка генерации чека: {ex.Message}");
+            }
+            
+        }
         private void btRemoveItem_Click(object sender, RoutedEventArgs e)
         {
             if(sender is Button button && button.Tag is int basketId)
@@ -138,6 +222,41 @@ namespace florist.MainPage
                         MessageBox.Show($"Ошибка удаления: {ex.Message}");
                     }
                 }
+            }
+        }
+        private void LoadCities()
+        {
+            var cities = AppConnect.Model.city.ToList();
+            cbCity.ItemsSource = cities; 
+        }
+        private void cbCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbCity.SelectedItem is city selectedCity)
+            {
+                int cityID = selectedCity.cityID;
+                LoadSalePoints(cityID);
+            }
+        }
+        private void LoadSalePoints(int cityID)
+        {
+            if (cityID <= 0)
+            {
+                MessageBox.Show("Пожалуйста, выберите город, чтобы увидеть доступные торговые точки.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cbSP.ItemsSource = null; 
+                return;
+            }
+            var salePoints = AppConnect.Model.salePoint
+                .Where(sp => sp.cityID == cityID)
+                .ToList();
+            cbSP.ItemsSource = salePoints;
+        }
+
+        private void cbSP_DropDownOpened(object sender, EventArgs e)
+        {
+            if (cbCity.SelectedItem == null)
+            {
+                MessageBox.Show("Пожалуйста, выберите город перед выбором адреса.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                cbSP.IsDropDownOpen = false;
             }
         }
     }

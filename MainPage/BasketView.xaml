@@ -11,6 +11,7 @@
     <Grid>
         <Label Content="АртФлора" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,0,0,0" Foreground="#FF3E8440" FontSize="36" Height="63"/>
         <Image HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Margin="0,0,0,0" Width="109" Source="/Images/logo-png.png"/>
+
         <TextBlock x:Name="tblUserLogin" HorizontalAlignment="Left" Margin="20,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" />
         <ListView x:Name="lvBasketItems" Margin="10,100,10,100">
             <ListView.ItemTemplate>
@@ -37,5 +38,11 @@
             <Button x:Name="btBack" FontSize="16" Content="Вернуться к товарам" Width="200" Height="30" Margin="0,0,10,0" Click="btBack_Click" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440"/>
             <Button x:Name="btCheckout" FontSize="16" Content="Оформить заказ" Width="200" Height="30" Click="btCheckout_Click" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440"/>
         </StackPanel>
+        <ComboBox x:Name="cbCity" HorizontalAlignment="Left" Margin="427,40,0,0" VerticalAlignment="Top" Width="135" FontSize="16"
+                  DisplayMemberPath="city1" SelectedValuePath="cityID" SelectionChanged="cbCity_SelectionChanged"/>
+        <ComboBox x:Name="cbSP" HorizontalAlignment="Left" Margin="567,40,0,0" VerticalAlignment="Top" Width="223" FontSize="16"
+                  DisplayMemberPath="address" SelectedValuePath="salePointID" DropDownOpened="cbSP_DropDownOpened"/>
+        <TextBlock HorizontalAlignment="Left" Margin="427,19,0,0" TextWrapping="Wrap" Text="Город:" VerticalAlignment="Top" FontSize="16" Foreground="#FF3E8440"/>
+        <TextBlock HorizontalAlignment="Left" Margin="567,19,0,0" TextWrapping="Wrap" Text="Адрес магазина:" VerticalAlignment="Top" FontSize="16" Foreground="#FF3E8440"/>
     </Grid>
 </Page>
