@@ -39,7 +39,6 @@ namespace florist.MainPage
             cbProduct.SelectionChanged += ApplyFilters;
             tbSearch.TextChanged += ApplyFilters;
         }
-        
         private async void LoadProducts()
         {
             try
@@ -94,6 +93,8 @@ namespace florist.MainPage
                     });
                 }
                 ApplyFilters(null, null);
+                
+
             }
             catch(Exception ex) 
             {

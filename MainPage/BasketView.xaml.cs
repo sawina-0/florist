@@ -106,7 +106,14 @@ namespace florist.MainPage
 
         private void btCheckout_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
 
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void btRemoveItem_Click(object sender, RoutedEventArgs e)
