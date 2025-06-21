@@ -83,6 +83,11 @@ namespace florist.PageRegAuth
                 MessageBox.Show("Пароль должен быть длинее 8 символов, но не длиннее 15!");
                 return;
             }
+            if (tbRegLog.Text.Length > 10 || tbRegSur.Text.Length > 50 || tbRegName.Text.Length > 50)
+{
+                MessageBox.Show("Логин не должен превышать 10 символов, а имя и фамилия 50");
+                return;
+            }
             if (string.IsNullOrWhiteSpace(tbRegPass.Password) || string.IsNullOrWhiteSpace(tbRegLog.Text) || string.IsNullOrWhiteSpace(tbRegPassAg.Password) || string.IsNullOrWhiteSpace(tbRegName.Text) || string.IsNullOrWhiteSpace(tbRegSur.Text))
             {
                 MessageBox.Show("Пожалуйста заполните все поля");

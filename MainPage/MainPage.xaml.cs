@@ -255,5 +255,10 @@ namespace florist.MainPage
                 }
             } 
         }
+
+        private void btQr_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.FrameMain.Navigate(new QRpage());
+        }
     }
 }
