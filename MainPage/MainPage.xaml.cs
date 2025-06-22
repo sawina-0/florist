@@ -1,4 +1,5 @@
 ﻿using florist.AppData;
+using florist.PageAddEdit;
 using florist.PageRegAuth;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,8 @@ namespace florist.MainPage
             InitializeComponent();
             InitializeControls();
             LoadProducts();
-            btAdd.Visibility = Autorization.getUserRole() == "администратор" ? Visibility.Visible : Visibility.Collapsed;
+            btAddF.Visibility = Autorization.getUserRole() == "администратор" ? Visibility.Visible : Visibility.Collapsed;
+            btAddB.Visibility = Autorization.getUserRole() == "администратор" ? Visibility.Visible : Visibility.Collapsed;
         }
         private void InitializeControls()
         {
@@ -259,6 +261,39 @@ namespace florist.MainPage
         private void btQr_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.FrameMain.Navigate(new QRpage());
+        }
+
+        private void btAddF_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.FrameMain.Navigate(new PageAddEdit.AddFlowerPage());
+        }
+
+        private void btAddB_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.FrameMain.Navigate(new PageAddEdit.AddBouquetPage());
+        }
+
+        private void btEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (((FrameworkElement)sender).DataContext is ProductItem product)
+            {
+                if (product.IsFlower)
+                {
+                    var flower = AppConnect.Model.flowers.Find(product.FlowerId);
+                    if (flower != null)
+                    {
+                        MainFrame.FrameMain.Navigate(new EditFlowerPage(flower));
+                    }
+                }
+                else
+                {
+                    var bouquet = AppConnect.Model.bouquet.Find(product.BouquetId);
+                    if (bouquet != null)
+                    {
+                        MainFrame.FrameMain.Navigate(new EditBouquetPage(bouquet));
+                    }
+                }
+            }
         }
     }
 }

@@ -242,6 +242,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PageAddEdit\AddBouquetPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageAddEdit\AddFlowerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageAddEdit\EditBouquetPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageAddEdit\EditFlowerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageRegAuth\Autorization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -252,6 +268,19 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PageAddEdit\AddBouquetPage.xaml.cs">
+      <DependentUpon>AddBouquetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageAddEdit\AddFlowerPage.xaml.cs">
+      <DependentUpon>AddFlowerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageAddEdit\EditBouquetPage.xaml.cs">
+      <DependentUpon>EditBouquetPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageAddEdit\EditFlowerPage.xaml.cs">
+      <DependentUpon>EditFlowerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageAddEdit\ImageHelper.cs" />
     <Compile Include="PageRegAuth\Autorization.xaml.cs">
       <DependentUpon>Autorization.xaml</DependentUpon>
     </Compile>
@@ -325,6 +354,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\bouquet3.jpeg" />
+    <Resource Include="Images\pinkRose.png" />
+    <Resource Include="Images\bouquetTest.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppData\Model1.Context.tt">

@@ -98,7 +98,7 @@
 
                                 <!-- Админские кнопки (видны только админу) -->
                                 <StackPanel x:Name="AdminPanel" Visibility="{Binding IsAdmin, Converter={StaticResource VisibilityConverter}}">
-                                    <Button x:Name="btEdit" Content="Редактировать" Margin="0,5" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440"/>
+                                    <Button x:Name="btEdit" Content="Редактировать" Margin="0,5" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="btEdit_Click"/>
                                     <Button x:Name="btDelete" Content="Удалить" Margin="0,5" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="btDelete_Click"/>
                                 </StackPanel>
                             </StackPanel>
@@ -108,9 +108,10 @@
             </ListView>
 
         </Grid>
-        <Button x:Name="btAdd" Content="Добавить товар" HorizontalAlignment="Left" Margin="15,0,0,15" VerticalAlignment="Bottom" Width="180" Height="45" FontSize="19" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440"/>
+        <Button x:Name="btAddF" Content="Добавить цветок" HorizontalAlignment="Left" Margin="15,0,0,15" VerticalAlignment="Bottom" Width="180" Height="45" FontSize="19" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="btAddF_Click"/>
         <Button x:Name="btExit" Content="Выйти" HorizontalAlignment="Right" Margin="0,0,15,15" VerticalAlignment="Bottom" Width="93" Height="25" FontSize="16" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="btExit_Click"/>
         <Button x:Name="btQr" Content="QR" HorizontalAlignment="Right" Margin="0,0,115,15" VerticalAlignment="Bottom" Width="93" Height="25" FontSize="16" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="btQr_Click"/>
+        <Button x:Name="btAddB" Content="Добавить букет" HorizontalAlignment="Left" Margin="201,0,0,15" VerticalAlignment="Bottom" Width="180" Height="45" FontSize="19" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="btAddB_Click"/>
 
     </Grid>
 </Page>

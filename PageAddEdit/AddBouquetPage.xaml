@@ -1,0 +1,69 @@
+﻿<Page x:Class="florist.PageAddEdit.AddBouquetPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:florist.PageAddEdit"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddBouquetPage"  Background="#FFF7EFDA">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Image x:Name="imgPreview" Width="100" Height="100"/>
+            <StackPanel Margin="10,0">
+                <Button x:Name="SelectImage" Content="Выбрать изображение"
+                        Width="170" FontSize="16" Margin="0,5" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="SelectImage_Click"/>
+                <TextBlock Text="Название букета:" FontSize="14"/>
+                <TextBox x:Name="tbName" Width="200" Margin="0,5"/>
+                <TextBlock Text="Цена:" FontSize="14"/>
+                <TextBox x:Name="tbPrice" Width="200" Margin="0,5"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Доступные цветы" FontSize="14" Grid.Column="0">
+                <ListView x:Name="lvAllFlowers">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Тип" Width="150" DisplayMemberBinding="{Binding type.type1}"/>
+                            <GridViewColumn Header="Цвет" Width="150" DisplayMemberBinding="{Binding color.color1}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </GroupBox>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="5,0">
+                <Button x:Name="AddFlower" Content=">>" Width="40" Margin="0,5" FontSize="16" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="AddFlower_Click"/>
+                <Button x:Name="RemoveFlower" Content=" &lt;&lt; " Width="40" FontSize="16" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Margin="0,5" Click="RemoveFlower_Click"/>
+            </StackPanel>
+
+            <GroupBox Header="Цветы в букете" FontSize="14" Grid.Column="2">
+                <ListView x:Name="lvSelectedFlowers">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Цветок" Width="200" DisplayMemberBinding="{Binding type.type1}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </GroupBox>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btSave" Content="Сохранить" Width="100" Margin="5" FontSize="16" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="btSave_Click"/>
+            <Button x:Name="btBack" Content="Отмена" Width="100" Margin="5" FontSize="16" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="btBack_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
