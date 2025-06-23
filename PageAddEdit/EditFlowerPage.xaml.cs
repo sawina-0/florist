@@ -116,7 +116,18 @@ namespace florist.PageAddEdit
                 MessageBox.Show("Заполните все поля корректно!");
                 return;
             }
+            if (price <= 0)
+            {
+                MessageBox.Show("Цена должна быть положительным числом!");
+                return;
+            }
 
+            // Проверка на максимальное значение decimal(8,2)
+            if (price > 999999.99m)
+            {
+                MessageBox.Show("Цена не может превышать 999 999.99");
+                return;
+            }
             try
             {
                 _currentFlower.typeID = (int)cbType.SelectedValue;

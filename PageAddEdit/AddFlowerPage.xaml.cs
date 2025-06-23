@@ -78,13 +78,25 @@ namespace florist.PageAddEdit
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
+
             if (cbType.SelectedValue == null || cbColor.SelectedValue == null ||
                 cbSupplier.SelectedValue == null || cbSize.SelectedValue == null || !decimal.TryParse(tbPrice.Text, out decimal price))
             {
                 MessageBox.Show("Заполните все поля корректно!");
                 return;
             }
+            if (price <= 0)
+            {
+                MessageBox.Show("Цена должна быть положительным числом!");
+                return;
+            }
 
+            // Проверка на максимальное значение decimal(8,2)
+            if (price > 999999.99m)
+            {
+                MessageBox.Show("Цена не может превышать 999 999.99");
+                return;
+            }
             try
             {
                 var newFlower = new flowers()

@@ -3,27 +3,49 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:florist.PageRegAuth"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Autorization">
+      Title="Autorization"
+      Background="#FFF7EFDA">
 
     <Grid>
-        <Grid.Background>
-            <SolidColorBrush Color="#FFF7EFDA"/>
-        </Grid.Background>
-        <TextBox x:Name="tbLogin" HorizontalAlignment="Center" Margin="0,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="324" Height="30" FontSize="16"/>
-        <PasswordBox x:Name="tbPass" HorizontalAlignment="Center" VerticalAlignment="Top" Width="324" Height="30" FontSize="16" Margin="0,171,0,0"/>
-        <TextBlock x:Name="loginTxt" HorizontalAlignment="Left" Margin="238,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="135" FontSize="18" Foreground="#FF3E8440">
-            <Run Language="ru-ru" Text="Введите логин:"/>
-        </TextBlock>
-        <TextBlock x:Name="passTxt" HorizontalAlignment="Left" Margin="238,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="135" FontSize="18" Foreground="#FF3E8440">
-            <Run Language="ru-ru" Text="Введите пароль:"/>
-        </TextBlock>
-        <Button x:Name="btEnter" Cursor="Hand" Content="Войти" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Width="324" Height="45" FontSize="16" BorderBrush="#FF3E8440" Background="#FFBADD7F" Foreground="#FF3E8440" Click="btEnter_Click" />
-        <Button x:Name="btReg" Cursor="Hand" Content="Регистрация" HorizontalAlignment="Center" Margin="0,281,0,0" VerticalAlignment="Top" Width="324" Height="45" FontSize="16" BorderBrush="#FF3E8440" Background="#FFBADD7F" Foreground="#FF3E8440" Click="btReg_Click" />
-        <Label Content="АртФлора" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,0,0,0" Foreground="#FF3E8440" FontSize="36" Height="63"/>
-        <Image HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Margin="0,0,0,0" Width="109" Source="/Images/logo-png.png"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <!-- Логотип и заголовок -->
+        <Image Grid.Row="0" Grid.Column="0" Height="68" Width="109" Source="/Images/logo-png.png" Margin="10"/>
+        <Label Grid.Row="0" Grid.Column="1" Content="АртФлора" Foreground="#FF3E8440" FontSize="36" 
+               VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+        <!-- Поля ввода -->
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Введите логин:" FontSize="18" Foreground="#FF3E8440"
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,5"/>
+        <TextBox x:Name="tbLogin" Grid.Row="2" Grid.ColumnSpan="2" Width="324" Height="30" FontSize="16"
+                 HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="Введите пароль:" FontSize="18" Foreground="#FF3E8440"
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,10,0,5"/>
+        <PasswordBox x:Name="tbPass" Grid.Row="4" Grid.ColumnSpan="2" Width="324" Height="30" FontSize="16"
+                     HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <!-- Кнопки -->
+        <Button x:Name="btEnter" Grid.Row="5" Grid.ColumnSpan="2" Content="Войти" Width="324" Height="45" 
+                FontSize="16" BorderBrush="#FF3E8440" Background="#FFBADD7F" Foreground="#FF3E8440" 
+                Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Cursor="Hand" Click="btEnter_Click"/>
+
+        <Button x:Name="btReg" Grid.Row="6" Grid.ColumnSpan="2" Content="Регистрация" Width="324" Height="45" 
+                FontSize="16" BorderBrush="#FF3E8440" Background="#FFBADD7F" Foreground="#FF3E8440" 
+                Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Cursor="Hand" Click="btReg_Click"/>
     </Grid>
 </Page>
