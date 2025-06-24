@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:florist"
         mc:Ignorable="d"
-        Title="MainWindow" Height="589" Width="943" Background="{x:Null}">
+        Title="АртФлора" Height="589" Width="943" Background="{x:Null}">
     <Grid>
         <Frame x:Name="MainWindowFrame" NavigationUIVisibility="Hidden"/>
     </Grid>

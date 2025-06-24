@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:florist.AppData"
       mc:Ignorable="d"
-      Title="MainPage" Background="#FFF7EFDA" Height="523" Width="885">
+      d:DesignHeight="523" d:DesignWidth="885"
+      Title="MainPage" Background="#FFF7EFDA">
     <Page.Resources>
         <local:BoolToVisibilityConverter x:Key="VisibilityConverter"/>
     </Page.Resources>

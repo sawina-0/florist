@@ -5,12 +5,33 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:florist.MainPage"
       mc:Ignorable="d"
-      Title="QRpage" Background="#FFF7EFDA" Height="523" Width="885">
+      d:DesignHeight="523" d:DesignWidth="885"
+      Title="QRpage" Background="#FFF7EFDA">
 
     <Grid>
-        <Label Content="АртФлора" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,0,0,0" Foreground="#FF3E8440" FontSize="36" Height="63"/>
-        <Image HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Margin="0,0,0,0" Width="109" Source="/Images/logo-png.png"/>
-        <Image x:Name="imgQr" HorizontalAlignment="Left" Height="300" Margin="292,130,0,0" VerticalAlignment="Top" Width="300"/>
-        <Button x:Name="btBack" Content="Назад" HorizontalAlignment="Right" Margin="0,0,15,15" VerticalAlignment="Bottom" Width="93" Height="25" FontSize="16" Background="#FFBADD7F" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Click="btBack_Click"/>
+        <!-- Логотип и заголовок в верхней части -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель с логотипом и названием -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" Margin="10">
+            <Image Height="68" Width="109" Source="/Images/logo-png.png"/>
+            <Label Content="АртФлора" Foreground="#FF3E8440" FontSize="36" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <!-- Центральная область с QR-кодом -->
+        <Viewbox Grid.Row="1" Stretch="Uniform">
+            <Image x:Name="imgQr" Width="300" Height="300"/>
+        </Viewbox>
+
+        <!-- Кнопка "Назад" внизу -->
+        <Button x:Name="btBack" Content="Назад" Grid.Row="2" 
+                HorizontalAlignment="Right" Margin="15" 
+                Width="93" Height="25" FontSize="16" 
+                Background="#FFBADD7F" BorderBrush="#FF3E8440" 
+                Foreground="#FF3E8440" Click="btBack_Click"/>
     </Grid>
 </Page>
