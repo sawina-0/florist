@@ -113,5 +113,6 @@ namespace florist.PageRegAuth
                 MessageBox.Show("Ошибка при добавлении данных" + ex.Message);
             }
         }
+
     }
 }

@@ -32,7 +32,16 @@ namespace florist.PageRegAuth
         {
             try
             {
-                
+                if(tbLogin.Text.Length > 10 || tbPass.Password.Length > 15)
+                {
+                    MessageBox.Show("Введена неверная длина логина или пароля", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                if (string.IsNullOrEmpty(tbLogin.Text) || string.IsNullOrEmpty(tbPass.Password))
+                {
+                    MessageBox.Show("Заполните все поля", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
                 var UserObj = AppConnect.Model.user
                     .Include(u => u.role)
                     .FirstOrDefault(x => x.login == tbLogin.Text && x.password == tbPass.Password);

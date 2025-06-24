@@ -124,6 +124,12 @@ namespace florist.PageAddEdit
                     });
                 }
 
+                AppConnect.Model.allProducts.Add(new allProducts
+                {
+                    bouquetID = newBouquet.bouquetID,
+                    flowerID = null // Явно указываем null для flowerID
+                });
+
                 AppConnect.Model.SaveChanges();
                 MessageBox.Show("Букет успешно добавлен!");
                 MainFrame.FrameMain.GoBack();

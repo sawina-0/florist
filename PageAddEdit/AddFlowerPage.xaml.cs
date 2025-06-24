@@ -113,6 +113,12 @@ namespace florist.PageAddEdit
                 AppConnect.Model.flowers.Add(newFlower);
                 AppConnect.Model.SaveChanges();
 
+                AppConnect.Model.allProducts.Add(new allProducts
+                {
+                    bouquetID = null,
+                    flowerID = newFlower.flowerID
+                });
+                AppConnect.Model.SaveChanges();
                 MessageBox.Show("Цветок успешно добавлен!");
                 MainFrame.FrameMain.Navigate(new MainPage.MainPage());
             }

@@ -5,28 +5,50 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:florist.PageRegAuth"
       mc:Ignorable="d" 
-      d:DesignHeight="495.711" d:DesignWidth="800"
+      d:DesignHeight="550" d:DesignWidth="800"
       Title="Registration">
 
     <Grid Background="#FFF7EFDA">
-        <Label Content="АртФлора" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="114,0,0,0" Foreground="#FF3E8440" FontSize="36" Height="63"/>
-        <Image HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Margin="0,0,0,0" Width="109" Source="/Images/logo-png.png"/>
-        <TextBlock HorizontalAlignment="Left" Margin="238,68,0,0" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top" FontSize="18" Foreground="#FF3E8440"/>
-        <TextBox x:Name="tbRegLog" HorizontalAlignment="Center" Margin="0,97,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="324" Height="30" FontSize="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="238,132,0,0" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top" FontSize="18" Foreground="#FF3E8440"/>
-        <PasswordBox x:Name="tbRegPass" HorizontalAlignment="Center" Margin="0,161,0,0" VerticalAlignment="Top" Width="324" Height="30" FontSize="16" PasswordChanged="tbRegPass_PasswordChanged"/>
-        <TextBlock HorizontalAlignment="Left" Margin="238,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Foreground="#FF3E8440">
-            <Run Text="Пароль"/><Run Language="ru-ru" Text=" "/><Run Text="повторно"/>
-        </TextBlock>
-        <PasswordBox x:Name="tbRegPassAg" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Width="324" Height="30" FontSize="16" PasswordChanged="tbRegPassAg_PasswordChanged"/>
-        <TextBlock HorizontalAlignment="Left" Margin="238,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Foreground="#FF3E8440">
-            <Run Text="Имя"/>
-        </TextBlock>
-        <TextBox x:Name="tbRegName" HorizontalAlignment="Center" Margin="0,289,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="324" Height="30" FontSize="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="238,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Foreground="#FF3E8440"><Run Text="Фамилия"/></TextBlock>
-        <TextBox x:Name="tbRegSur" HorizontalAlignment="Center" Margin="0,353,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="324" Height="30" FontSize="16"/>
-        <Button x:Name="btAuth" Content="Авторизация" HorizontalAlignment="Left" Margin="238,409,0,0" VerticalAlignment="Top" Height="54" Width="145" FontSize="15" Cursor="Hand" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Background="#FFBADD7F" Click="btAuth_Click"/>
-        <Button x:Name="btReg" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="417,409,0,0" VerticalAlignment="Top" Height="54" Width="145" FontSize="15" Cursor="Hand" IsEnabled="False" BorderBrush="#FF3E8440" Foreground="#FF3E8440" Background="#FFBADD7F" Click="btReg_Click"/>
+        <!-- Логотип и название в левом верхнем углу -->
+        <Image Source="/Images/logo-png.png" HorizontalAlignment="Left" VerticalAlignment="Top" 
+               Width="109" Height="68" Margin="10,10,0,0"/>
+        <Label Content="АртФлора" HorizontalAlignment="Left" VerticalAlignment="Top" 
+               Foreground="#FF3E8440" FontSize="36" Margin="134,10,0,0"/>
 
+        <!-- Центральная область с полями ввода -->
+        <StackPanel HorizontalAlignment="Center" Width="350" Margin="0,68,0,32" >
+            <!-- Логин -->
+            <TextBlock Text="Логин" FontSize="18" Foreground="#FF3E8440" Margin="0,0,0,5"/>
+            <TextBox x:Name="tbRegLog" Height="30" FontSize="16" Margin="0,0,0,15"/>
+
+            <!-- Пароль -->
+            <TextBlock Text="Пароль" FontSize="18" Foreground="#FF3E8440" Margin="0,0,0,5"/>
+            <PasswordBox x:Name="tbRegPass" Height="30" FontSize="16" Margin="0,0,0,15" PasswordChanged="tbRegPass_PasswordChanged"/>
+
+            <!-- Подтверждение пароля -->
+            <TextBlock Text="Пароль повторно" FontSize="18" Foreground="#FF3E8440" Margin="0,0,0,5"/>
+            <PasswordBox x:Name="tbRegPassAg" Height="30" FontSize="16" Margin="0,0,0,15" PasswordChanged="tbRegPassAg_PasswordChanged"/>
+
+            <!-- Имя -->
+            <TextBlock Text="Имя" FontSize="18" Foreground="#FF3E8440" Margin="0,0,0,5"/>
+            <TextBox x:Name="tbRegName" Height="30" FontSize="16" Margin="0,0,0,15"/>
+
+            <!-- Фамилия -->
+            <TextBlock Text="Фамилия" FontSize="18" Foreground="#FF3E8440" Margin="0,0,0,5"/>
+            <TextBox x:Name="tbRegSur" Height="30" FontSize="16" Margin="0,0,0,25"/>
+
+            <!-- Кнопки -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Button x:Name="btAuth" Content="Авторизация" Width="145" Height="45" 
+                        FontSize="15" Margin="0,0,10,0"
+                        BorderBrush="#FF3E8440" Foreground="#FF3E8440" 
+                        Background="#FFBADD7F" Click="btAuth_Click"/>
+
+                <Button x:Name="btReg" Content="Зарегистрироваться" Width="145" Height="45" 
+                        FontSize="15" IsEnabled="False"
+                        BorderBrush="#FF3E8440" Foreground="#FF3E8440" 
+                        Background="#FFBADD7F" Click="btReg_Click"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
